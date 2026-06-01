@@ -1,3 +1,6 @@
+#ifndef EGM_TNP_HISTFITTER_C
+#define EGM_TNP_HISTFITTER_C
+
 #include "RooDataHist.h"
 #include "RooWorkspace.h"
 #include "RooRealVar.h"
@@ -270,3 +273,5 @@ void tnpFitter::textParForCanvas(RooFitResult *resP, RooFitResult *resF,TPad *p)
   text1->Draw();
   text->Draw();
 }
+
+#endif

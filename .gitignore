@@ -3,6 +3,9 @@
 *.d
 *.so
 *.pcm
+*.log
+*.png
+*.pdf
 condor_*.sub
 results/
 .__afsB28E

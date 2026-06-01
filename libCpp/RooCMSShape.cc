@@ -1,3 +1,6 @@
+#ifndef EGM_TNP_ROOCMSSHAPE_CC
+#define EGM_TNP_ROOCMSSHAPE_CC
+
 /*****************************************************************************
  * Project: CMS detector at the CERN
  *
@@ -63,3 +66,5 @@ ClassImp(RooCMSShape)
   else u = exp(-u);   //exponential decay
   return erf*u;
  } 
+
+  #endif

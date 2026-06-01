@@ -1,3 +1,6 @@
+#ifndef EGM_TNP_ROOCBEXGAUSSSHAPETNP_CC
+#define EGM_TNP_ROOCBEXGAUSSSHAPETNP_CC
+
 #include "RooCBExGaussShapeTNP.h" 
 
 ClassImp(RooCBExGaussShapeTNP) 
@@ -81,3 +84,5 @@ Double_t RooCBExGaussShapeTNP::evaluate() const
 
   return rval;
 } 
+
+#endif

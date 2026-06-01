@@ -1,3 +1,5 @@
+# cython: language=c++
+# cython: language_level=3
 include "ROOT.pxi"
 import math
 #from fitUtils import *
@@ -62,26 +64,30 @@ def makePassFailHistograms( sample, flag, bindef, var ):
     tree = new TChain(sample.tree)
 
     for p in sample.path:
-        print ' adding rootfile: ', p
+        print(' adding rootfile: ', p)
         tree.Add(str.encode(p))
 
     if not sample.puTree is None:
-        print ' - Adding weight tree: %s from file %s ' % (sample.weight.split('.')[0], sample.puTree)
-        tree.AddFriend(sample.weight.split('.')[0],sample.puTree)
+        print(' - Adding weight tree: %s from file %s ' % (sample.weight.split('.')[0], sample.puTree))
+        tree.AddFriend(str.encode(sample.weight.split('.')[0]), str.encode(sample.puTree))
 
     #################################
     # Prepare hists, cuts and outfile
     #################################
 
-    cdef TFile* outfile = new TFile(str.encode(sample.histFile),'recreate')
+    cdef TFile* outfile = new TFile(str.encode(sample.histFile), b'recreate')
 
     cutBinList = []
 
-    flag_formula = new TTreeFormula('Flag_Selection', str.encode(flag), tree)
+    flag_formula = new TTreeFormula(b'Flag_Selection', str.encode(flag), tree)
 
     for ib in range(len(bindef['bins'])):
-        hPass.push_back(new TH1D('%s_Pass' % bindef['bins'][ib]['name'],bindef['bins'][ib]['title'],var['nbins'],var['min'],var['max']))
-        hFail.push_back(new TH1D('%s_Fail' % bindef['bins'][ib]['name'],bindef['bins'][ib]['title'],var['nbins'],var['min'],var['max']))
+        hPass.push_back(new TH1D(str.encode('%s_Pass' % bindef['bins'][ib]['name']),
+                                 str.encode(bindef['bins'][ib]['title']),
+                                 var['nbins'],var['min'],var['max']))
+        hFail.push_back(new TH1D(str.encode('%s_Fail' % bindef['bins'][ib]['name']),
+                                 str.encode(bindef['bins'][ib]['title']),
+                                 var['nbins'],var['min'],var['max']))
         hPass[ib].Sumw2()
         hFail[ib].Sumw2()
 
@@ -100,7 +106,8 @@ def makePassFailHistograms( sample, flag, bindef, var ):
 
         cutBinList.append(cutBin)
 
-        bin_formulas.push_back(new TTreeFormula('%s_Selection' % bindef['bins'][ib]['name'], str.encode(cutBin), tree))
+        bin_formulas.push_back(new TTreeFormula(str.encode('%s_Selection' % bindef['bins'][ib]['name']),
+                                                str.encode(cutBin), tree))
 
         formulas_list.Add(<TObject*>bin_formulas[nbins])
 
@@ -114,7 +121,7 @@ def makePassFailHistograms( sample, flag, bindef, var ):
     ######################################
 
     # Find out with variables are used to activate the corresponding branches
-    replace_patterns = ['&', '|', '-', 'cos(', 'sqrt(', 'fabs(', 'abs(', '(', ')', '>', '<', '=', '!', '*', '/', '[', ']']
+    replace_patterns = ['&', '|', '+', '-', 'cos(', 'sqrt(', 'fabs(', 'abs(', '(', ')', '>', '<', '=', '!', '*', '/', '[', ']']
     branches = " ".join(cutBinList) + " pair_mass " + flag
     for p in replace_patterns:
         branches = branches.replace(p, ' ')
@@ -123,26 +130,26 @@ def makePassFailHistograms( sample, flag, bindef, var ):
     branches = set([str.encode(x) for x in branches.split(" ") if x != '' and not is_number(x)])
 
     # Activate only branches which matter for the tag selection
-    tree.SetBranchStatus("*", 0)
+    tree.SetBranchStatus(b"*", 0)
 
     for br in branches:
         tree.SetBranchStatus(br, 1)
 
     # Set adress of pair mass
-    tree.SetBranchAddress("pair_mass", <void*>&pair_mass)
+    tree.SetBranchAddress(b"pair_mass", <void*>&pair_mass)
 
     ################
     # Loop over Tree
     ################
 
     nevts = tree.GetEntries()
-    frac_of_nevts = nevts/20
+    frac_of_nevts = nevts // 20
 
     print("Starting event loop to fill histograms..")
 
     for index in range(nevts):
         if index % frac_of_nevts == 0:
-            print outcount, "%", sample.name
+            print(outcount, "%", sample.name)
             outcount = outcount + 5
 
         tree.GetEntry(index)

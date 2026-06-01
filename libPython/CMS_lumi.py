@@ -6,7 +6,7 @@ import ROOT as rt
 #   Updated by:   Dinko Ferencek (Rutgers)
 #
 
-cmsText     = "CMS";
+cmsText     = "CMS"
 cmsTextFont   = 61  
 
 writeExtraText = True
@@ -91,7 +91,7 @@ def CMS_lumi(pad,  iPeriod,  iPosX ):
     elif ( iPeriod==0 ):
         lumiText += lumi_sqrtS
             
-    print lumiText
+    print(lumiText)
 
     latex = rt.TLatex()
     latex.SetNDC()

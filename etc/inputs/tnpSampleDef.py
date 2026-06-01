@@ -25,6 +25,81 @@ eos_Run3_PromptReco = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/2023-04
 eos_Reco_Run3_PromptReco = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/2023-05-01/2022/data/'
 eos_Reco_Run3_124X = '/eos/cms/store/group/phys_egamma/tnpTuples/bjoshi/2023-02-09/2022/mc/'
 
+#---------------- Custom Photon ID selection efficiency measrement samples ----------------
+eos2022 = '/eos/cms/store/group/phys_egamma/ec/nkasarag/EGM_comm/TnP_samples/2022'
+Run3_2022preEE = {
+        'DY_MC_NLO_2022preEE'   : tnpSample('DY_MC_NLO_2022preEE', eos2022 + '/sim/DY_NLO/merged_Run3Summer22MiniAODv4-130X_mcRun3_2022_realistic_v5-v2.root', isMC=True, nEvts = 7286732),
+        'DY_MC_LO_2022preEE'    : tnpSample('DY_MC_LO_2022preEE', eos2022 + '/sim/DY_LO/merged_DYJetsToLL_M_50_Run3Summer22MiniAODv4-forPOG_130X_mcRun3_2022_realistic_v5-v2.root', isMC=True, nEvts = 3595138),
+        'Data_2022preEE'        : tnpSample('Data_2022preEE', eos2022 + '/data/merged_Run2022_BCD_ReReco_updated.root', lumi = 7.98),
+        }
+Run3_2022postEE = {
+        'DY_MC_NLO_2022postEE'  : tnpSample('DY_MC_NLO_2022postEE', eos2022 + '/sim/DY_NLO/merged_Run3Summer22EEMiniAODv4-130X_mcRun3_2022_realistic_postEE_v6-v2.root', isMC=True, nEvts = 27397320),
+        'DY_MC_LO_2022postEE'   : tnpSample('DY_MC_LO_2022postEE', eos2022 + '/sim/DY_LO/merged_DYJetsToLL_M_50_Run3Summer22EEMiniAODv4-forPOG_130X_mcRun3_2022_realistic_postEE_v6-v2.root', isMC=True, nEvts = 12144692),
+        'Data_2022postEE'       : tnpSample('Data_2022postEE', eos2022 + '/data/merged_Run2022_EReReco_FG_PromptReco_updated.root', lumi = 26.67),
+        }
+
+eos2023 = '/eos/cms/store/group/phys_egamma/ec/tnpTuples/Prompt2023'
+Run3_2023preBPix = {
+        'DY_MC_NLO_2023preBPix' : tnpSample('DY_MC_NLO_2023preBPix', eos2023 + '/DY_NLO_2023preBPIX.root', isMC=True, nEvts = 21841873),
+        'DY_MC_LO_2023preBPix'  : tnpSample('DY_MC_LO_2023preBPix', eos2023 + '/DY_LO_2023preBPIX.root', isMC=True, nEvts = 18539920),
+        'Data_2023preBPix'      : tnpSample('Data_2023preBPix', eos2023 + '/data_2023C.root', lumi = 17.79),
+        }
+Run3_2023postBPix = {
+        'DY_MC_NLO_2023postBPix': tnpSample('DY_MC_NLO_2023postBPix', eos2023 + '/photonIDpostBPIXntuples/DY_NLO_2023postBPIX.root', isMC=True, nEvts = 13142450),
+        'DY_MC_LO_2023postBPix' : tnpSample('DY_MC_LO_2023postBPix', eos2023 + '/photonIDpostBPIXntuples/DY_LO_2023postBPIX.root', isMC=True, nEvts = 9750346),
+        'Data_2023postBPix'     : tnpSample('Data_2023postBPix', eos2023 + '/photonIDpostBPIXntuples/data_2023D.root', lumi = 9.45),
+        }
+
+
+eos2024 = '/eos/cms/store/group/phys_egamma/ScaleFactors/Data2024/PhoID/tnp_ntuples/merged_era'
+Run3_2024 = {
+        'DY_MC_NLO_2024' : tnpSample('DY_MC_NLO_2024', eos2024 + '/TnPTree_mc_amcatnlo.root', isMC=True, nEvts = 203271136),
+        'DY_MC_LO_2024'  : tnpSample('DY_MC_LO_2024', eos2024 + '/TnPTree_mc_madgraph.root', isMC=True, nEvts = 202883601),
+        'Data_2024C'     : tnpSample('Data_2024C', eos2024 + '/TnPTree_data_C.root', lumi = 7.24),
+        'Data_2024D'     : tnpSample('Data_2024D', eos2024 + '/TnPTree_data_D.root', lumi = 7.96),
+        'Data_2024E'     : tnpSample('Data_2024E', eos2024 + '/TnPTree_data_E.root', lumi = 11.32),
+        'Data_2024F'     : tnpSample('Data_2024F', eos2024 + '/TnPTree_data_F.root', lumi = 27.76),
+        'Data_2024G'     : tnpSample('Data_2024G', eos2024 + '/TnPTree_data_G.root', lumi = 37.77),
+        'Data_2024H'     : tnpSample('Data_2024H', eos2024 + '/TnPTree_data_H.root', lumi = 5.44),
+        'Data_2024I'     : tnpSample('Data_2024I', eos2024 + '/TnPTree_data_I.root', lumi = 11.47),
+        }
+
+#---------------- electron offline selection, single-/double-trigger efficiency measrement samples ----------------
+eos2024ele = '/eos/project/h/htozg-dy-privatemc/pelai/root_make_TnP_ntuple'
+Run3_2024_ele = {
+        'DY_MC_NLO_2024' : tnpSample('DY_MC_NLO_2024', eos2024ele + '/mc/DY_NLO_2024/DY_NLO_2024.root', isMC=True, nEvts = 203271136),
+        'DY_MC_LO_2024'  : tnpSample('DY_MC_LO_2024',  eos2024ele + '/mc/DY_LO_2024/DY_LO_2024.root', isMC=True, nEvts = 202883601),
+        'Data_2024'      : tnpSample('Data_2024',      eos2024ele + '/data/Data_2024.root', lumi = 108.95),
+        }
+
+#---------------- photon CSEV efficiency measrement samples ----------------
+eoszmmg = '/eos/home-p/pelai/HZa/root_P2Root/run3_tnp_zmmg'
+Run3_2022preEE_zmmg = {
+        'DY_MC_NLO_2022preEE'    : tnpSample('DY_MC_NLO_2022preEE',    eoszmmg + '/mc/DYJetsToLL/2022preEE.root', isMC=True, nEvts = 203271136),
+        'DY_MC_LO_2022preEE'     : tnpSample('DY_MC_LO_2022preEE',     eoszmmg + '/mc/DYJetsToLL_MLM/2022preEE.root', isMC=True, nEvts = 202883601),
+        'Data_2022preEE'         : tnpSample('Data_2022preEE',         eoszmmg + '/Data_tnp_zmmg/2022preEE.root', lumi = 108.95),
+        }
+Run3_2022postEE_zmmg = {
+        'DY_MC_NLO_2022postEE'   : tnpSample('DY_MC_NLO_2022postEE',   eoszmmg + '/mc/DYJetsToLL/2022postEE.root', isMC=True, nEvts = 203271136),
+        'DY_MC_LO_2022postEE'    : tnpSample('DY_MC_LO_2022postEE',    eoszmmg + '/mc/DYJetsToLL_MLM/2022postEE.root', isMC=True, nEvts = 202883601),
+        'Data_2022postEE'        : tnpSample('Data_2022postEE',        eoszmmg + '/Data_tnp_zmmg/2022postEE.root', lumi = 108.95),
+        }
+Run3_2023preBPix_zmmg = {
+        'DY_MC_NLO_2023preBPix'  : tnpSample('DY_MC_NLO_2023preBPix',  eoszmmg + '/mc/DYJetsToLL/2023preBPix.root', isMC=True, nEvts = 203271136),
+        'DY_MC_LO_2023preBPix'   : tnpSample('DY_MC_LO_2023preBPix',   eoszmmg + '/mc/DYJetsToLL_MLM/2023preBPix.root', isMC=True, nEvts = 202883601),
+        'Data_2023preBPix'       : tnpSample('Data_2023preBPix',       eoszmmg + '/Data_tnp_zmmg/2023preBPix.root', lumi = 108.95),
+        }
+Run3_2023postBPix_zmmg = {
+        'DY_MC_NLO_2023postBPix' : tnpSample('DY_MC_NLO_2023postBPix', eoszmmg + '/mc/DYJetsToLL/2023postBPix.root', isMC=True, nEvts = 203271136),
+        'DY_MC_LO_2023postBPix'  : tnpSample('DY_MC_LO_2023postBPix',  eoszmmg + '/mc/DYJetsToLL_MLM/2023postBPix.root', isMC=True, nEvts = 202883601),
+        'Data_2023postBPix'      : tnpSample('Data_2023postBPix',      eoszmmg + '/Data_tnp_zmmg/2023postBPix.root', lumi = 108.95),
+        }
+Run3_2024_zmmg = {
+        'DY_MC_NLO_2024'         : tnpSample('DY_MC_NLO_2024',         eoszmmg + '/mc/DYJetsTo2Mu/2024.root', isMC=True, nEvts = 203271136),
+        'DY_MC_LO_2024'          : tnpSample('DY_MC_LO_2024',          eoszmmg + '/mc/DYJetsToLL_MLM/2024.root', isMC=True, nEvts = 202883601),
+        'Data_2024'              : tnpSample('Data_2024',              eoszmmg + '/Data_tnp_zmmg/2024.root', lumi = 108.95),
+        }
+#--------------------------------------------------------------------------------
 
 ReReco2017 = {
 
