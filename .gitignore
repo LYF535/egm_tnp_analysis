@@ -18,3 +18,12 @@ etc/*.pyc
 etc/config/*.pyc
 
 condor/*
+
+# Vim swap files
+*.sys.v#*
+
+# Python cache
+__pycache__/
+
+# Build artifacts
+libPython/build/
